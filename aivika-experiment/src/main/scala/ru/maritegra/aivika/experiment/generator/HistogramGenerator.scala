@@ -149,7 +149,7 @@ private class HistogramGenerator(parent: ExperimentGenerator, item: HistogramIte
     val hs = Buffer[Disposable]()
 
     hs += processIntegPoint(run)
-    hs += processLastPoint(run)
+    hs += processRunFinished(run)
 
     new Disposable {
 
@@ -180,9 +180,9 @@ private class HistogramGenerator(parent: ExperimentGenerator, item: HistogramIte
   protected def startSeriesSeq5(run: RunBinding, name: String, data: Seq[Seq[Seq[Seq[Seq[Dynamics[Double]]]]]],
                                 binding: DynamicsSeq5Binding) = new Disposable { def dispose() {} }
 
-  private def processLastPoint(run: RunBinding): Disposable = {
+  private def processRunFinished(run: RunBinding): Disposable = {
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runFinishedInRun(run.index) subscribe ((x: Run) => {
 
       run.file = generateFile(run)
 

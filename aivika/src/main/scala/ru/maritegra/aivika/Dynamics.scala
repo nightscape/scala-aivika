@@ -371,4 +371,9 @@ object Dynamics {
       ts
     }
   }
+
+  /**
+   *  Create a new process that sequentially iterates the input process.
+   */
+  def iterate(m: Dynamics[Unit]): Dynamics[Unit] = Memo.memoUnit0(m)
 }

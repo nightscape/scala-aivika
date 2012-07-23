@@ -12,7 +12,7 @@ import scala.collection.immutable.Map
 
 import ru.maritegra.aivika.util._
 
-class SimulationEventSource extends EventSource[Point] {
+class PointEventSource extends EventSource[Point] {
 
   private var map = Map[Int, EventSource[Point]]()
 

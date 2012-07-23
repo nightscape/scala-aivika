@@ -144,14 +144,15 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
       if (vs(i).isInstanceOf[Stateful]) {
 
         ts += new IrregularTimeStatistics
+        hs += processInitPoint(run, i)
         hs += processStateful(run, i)
+        hs += processLastPoint(run, i)
 
       } else {
 
         ts += new RegularTimeStatistics
         is += i
       }
-      
     }
 
     hs += processIntegPoint(run, is)
@@ -199,6 +200,34 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
         for (i <- columns) {
           ts(i).add(p.time, vs(i).applyForDouble(p))
         }
+      }
+    })
+  }
+
+  private def processInitPoint(run: RunBinding, column: Int): Disposable = {
+
+    val f = item.value.filter
+    val v = run.vars(column)
+    val t = run.stats(column)
+
+    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+
+      if (f.applyForBoolean(p)) {
+        t.add(p.time, v.applyForDouble(p))
+      }
+    })
+  }
+
+  private def processLastPoint(run: RunBinding, column: Int): Disposable = {
+
+    val f = item.value.filter
+    val v = run.vars(column)
+    val t = run.stats(column)
+
+    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+
+      if (f.applyForBoolean(p)) {
+        t.add(p.time, v.applyForDouble(p))
       }
     })
   }

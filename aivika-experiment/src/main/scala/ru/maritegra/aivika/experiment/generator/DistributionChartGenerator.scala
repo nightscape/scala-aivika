@@ -143,23 +143,10 @@ private class DistributionChartGenerator(parent: ExperimentGenerator, item: Dist
   protected def startRun(run: RunBinding): Disposable = {
 
     val hs = Buffer[Disposable]()
-    val is = Buffer[Int]()
-    val vs = run.vars
 
-    hs += processInitPoint(run)
-
-    for (i <- 0 to vs.length - 1) {
-
-      if (vs(i).isInstanceOf[Stateful]) {
-        hs += processStateful(run, i)
-
-      } else {
-        is += i
-      }
-    }
-
-    hs += processIntegPoint(run, is)
-    hs += processLastPoint(run)
+    hs += processRunStarted(run)
+    hs += processIntegPoint(run)
+    hs += processRunFinished(run)
 
     new Disposable {
 
@@ -190,9 +177,9 @@ private class DistributionChartGenerator(parent: ExperimentGenerator, item: Dist
   protected def startSeriesSeq5(run: RunBinding, name: String, data: Seq[Seq[Seq[Seq[Seq[Dynamics[Double]]]]]],
                                 binding: DynamicsSeq5Binding) = new Disposable { def dispose() {} }
 
-  private def processInitPoint(run: RunBinding): Disposable = {
+  private def processRunStarted(run: RunBinding): Disposable = {
 
-    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runStartedInRun(run.index) subscribe ((x: Run) => {
 
       for (x <- run.names) {
         run.data += Buffer[Double]()
@@ -200,9 +187,9 @@ private class DistributionChartGenerator(parent: ExperimentGenerator, item: Dist
     })
   }
 
-  private def processLastPoint(run: RunBinding): Disposable = {
+  private def processRunFinished(run: RunBinding): Disposable = {
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runFinishedInRun(run.index) subscribe ((x: Run) => {
 
       run.file = generateFile(run)
 
@@ -283,7 +270,7 @@ private class DistributionChartGenerator(parent: ExperimentGenerator, item: Dist
     })
   }
 
-  private def processIntegPoint(run: RunBinding, columns: Seq[Int]): Disposable = {
+  private def processIntegPoint(run: RunBinding): Disposable = {
 
     val f = item.value.filter
 
@@ -293,26 +280,9 @@ private class DistributionChartGenerator(parent: ExperimentGenerator, item: Dist
 
         val vs = run.vars
 
-        for (i <- columns) {
+        for (i <- 0 to vs.length - 1) {
           run.data(i) += vs(i).applyForDouble(p)
         }
-      }
-
-      ()
-    })
-  }
-
-  private def processStateful(run: RunBinding, column: Int): Disposable = {
-
-    val f = item.value.filter
-    val v = run.vars(column)
-
-    val stateful = v.asInstanceOf[Stateful]
-
-    stateful.changedInRun(run.index) subscribe ((p: Point) => {
-
-      if (f.applyForBoolean(p)) {
-        run.data(column) += v.applyForDouble(p)
       }
 
       ()

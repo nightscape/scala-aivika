@@ -15,7 +15,7 @@ import ru.maritegra.aivika.util._
  */
 trait Stateful {
 
-  protected[aivika] val changedSource = new SimulationEventSource
+  protected[aivika] val changedSource = new PointEventSource
 
   /**
    * Handles each change of the state.

@@ -139,7 +139,7 @@ private class TableGenerator(parent: ExperimentGenerator, item: TableItem, id: I
     val hs = Buffer[Disposable]()
     val vs = run.vars
 
-    hs += processInitPoint(run)
+    hs += processRunStarted(run)
 
     for (i <- 0 to vs.length - 1) {
 
@@ -149,7 +149,7 @@ private class TableGenerator(parent: ExperimentGenerator, item: TableItem, id: I
     }
 
     hs += processIntegPoint(run)
-    hs += processLastPoint(run)
+    hs += processRunFinished(run)
 
     new Disposable {
 
@@ -180,9 +180,9 @@ private class TableGenerator(parent: ExperimentGenerator, item: TableItem, id: I
   protected def startSeriesSeq5(run: RunBinding, name: String, data: Seq[Seq[Seq[Seq[Seq[Dynamics[Any]]]]]],
                                 binding: DynamicsSeq5Binding) = new Disposable { def dispose() {} }
 
-  private def processInitPoint(run: RunBinding): Disposable = {
+  private def processRunStarted(run: RunBinding): Disposable = {
 
-    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runStartedInRun(run.index) subscribe ((x: Run) => {
 
       run.file = generateFile(run)
       run.writer = new PrintWriter(new BufferedWriter(new FileWriter(run.file)))
@@ -191,9 +191,9 @@ private class TableGenerator(parent: ExperimentGenerator, item: TableItem, id: I
     })
   }
 
-  private def processLastPoint(run: RunBinding): Disposable = {
+  private def processRunFinished(run: RunBinding): Disposable = {
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runFinishedInRun(run.index) subscribe ((x: Run) => {
 
       run.writer.close()
 

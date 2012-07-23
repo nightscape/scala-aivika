@@ -144,9 +144,9 @@ private class XYChartGenerator(parent: ExperimentGenerator, item: XYChartItem, i
 
     val hs = Buffer[Disposable]()
 
-    hs += processInitPoint(run)
+    hs += processRunStarted(run)
     hs += processIntegPoint(run)
-    hs += processLastPoint(run)
+    hs += processRunFinished(run)
 
     new Disposable {
 
@@ -177,9 +177,9 @@ private class XYChartGenerator(parent: ExperimentGenerator, item: XYChartItem, i
   protected def startSeriesSeq5(run: RunBinding, name: String, data: Seq[Seq[Seq[Seq[Seq[Dynamics[Double]]]]]],
                                 binding: DynamicsSeq5Binding) = new Disposable { def dispose() {} }
 
-  private def processInitPoint(run: RunBinding): Disposable = {
+  private def processRunStarted(run: RunBinding): Disposable = {
 
-    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runStartedInRun(run.index) subscribe ((x: Run) => {
 
       for (x <- run.names) {
         run.data += new XYSeries(x, false)
@@ -187,9 +187,9 @@ private class XYChartGenerator(parent: ExperimentGenerator, item: XYChartItem, i
     })
   }
 
-  private def processLastPoint(run: RunBinding): Disposable = {
+  private def processRunFinished(run: RunBinding): Disposable = {
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runFinishedInRun(run.index) subscribe ((x: Run) => {
 
       run.file = generateFile(run)
 

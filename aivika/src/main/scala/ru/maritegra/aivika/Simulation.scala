@@ -12,11 +12,11 @@ import ru.maritegra.aivika.util._
 
 class Simulation {
 
-  private val pausedSource = new SimulationEventSource
+  private val pausedSource = new PointEventSource
 
-  private val initPointSource = new SimulationEventSource
-  private val integPointSource = new SimulationEventSource
-  private val lastPointSource = new SimulationEventSource
+  private val initPointSource = new PointEventSource
+  private val integPointSource = new PointEventSource
+  private val lastPointSource = new PointEventSource
 
   def paused: Event[Point] = pausedSource.publish
   def pausedInRun(runIndex: Int): Event[Point] = pausedSource.publishInRun(runIndex)
@@ -28,6 +28,15 @@ class Simulation {
   def onInitPointInRun(runIndex: Int): Event[Point] = initPointSource.publishInRun(runIndex)
   def onIntegPointInRun(runIndex: Int): Event[Point] = integPointSource.publishInRun(runIndex)
   def onLastPointInRun(runIndex: Int): Event[Point] = lastPointSource.publishInRun(runIndex)
+
+  private val runStartedSource = new RunEventSource
+  private val runFinishedSource = new RunEventSource
+
+  def runStarted: Event[Run] = runStartedSource.publish
+  def runFinished: Event[Run] = runFinishedSource.publish
+
+  def runStartedInRun(runIndex: Int): Event[Run] = runStartedSource.publishInRun(runIndex)
+  def runFinishedInRun(runIndex: Int): Event[Run] = runFinishedSource.publishInRun(runIndex)
 
   private val startedSource = new EventSource[Unit]
   private val finishedSource = new EventSource[Unit]
@@ -70,6 +79,8 @@ class Simulation {
 
     try {
 
+      runStartedSource.trigger(this, run)
+
       val specs = run.specs
       val n = specs.iterations
 
@@ -90,6 +101,8 @@ class Simulation {
         val p = Point(specs, run, specs.time(n-1, 0), n-1, 0)
         lastPointSource.trigger(this, p)
       }
+
+      runFinishedSource.trigger(this, run)
 
     } finally {
       run.dispose()

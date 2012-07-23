@@ -146,12 +146,15 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
     val is = Buffer[Int]()
     val vs = run.vars
 
-    hs += processInitPoint(run)
+    hs += processRunStarted(run)
 
     for (i <- 0 to vs.length - 1) {
 
       if (vs(i).isInstanceOf[Stateful]) {
+
+        hs += processInitPoint(run, i)
         hs += processStateful(run, i)
+        hs += processLastPoint(run, i)
 
       } else {
         is += i
@@ -159,7 +162,7 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
     }
 
     hs += processIntegPoint(run, is)
-    hs += processLastPoint(run)
+    hs += processRunFinished(run)
 
     new Disposable {
 
@@ -190,9 +193,9 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
   protected def startSeriesSeq5(run: RunBinding, name: String, data: Seq[Seq[Seq[Seq[Seq[Dynamics[Double]]]]]],
                                 binding: DynamicsSeq5Binding) = new Disposable { def dispose() {} }
 
-  private def processInitPoint(run: RunBinding): Disposable = {
+  private def processRunStarted(run: RunBinding): Disposable = {
 
-    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runStartedInRun(run.index) subscribe ((x: Run) => {
 
       for (x <- run.names) {
         run.data += new XYSeries(x)
@@ -200,9 +203,9 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
     })
   }
 
-  private def processLastPoint(run: RunBinding): Disposable = {
+  private def processRunFinished(run: RunBinding): Disposable = {
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.runFinishedInRun(run.index) subscribe ((x: Run) => {
 
       run.file = generateFile(run)
 
@@ -306,6 +309,32 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
         for (i <- columns) {
           add(run, p.time, i, vs(i).applyForDouble(p))
         }
+      }
+    })
+  }
+
+  private def processInitPoint(run: RunBinding, column: Int): Disposable = {
+
+    val f = item.value.filter
+    val v = run.vars(column)
+
+    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+
+      if (f.applyForBoolean(p)) {
+        add(run, p.time, column, v.applyForDouble(p))
+      }
+    })
+  }
+
+  private def processLastPoint(run: RunBinding, column: Int): Disposable = {
+
+    val f = item.value.filter
+    val v = run.vars(column)
+
+    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+
+      if (f.applyForBoolean(p)) {
+        add(run, p.time, column, v.applyForDouble(p))
       }
     })
   }
