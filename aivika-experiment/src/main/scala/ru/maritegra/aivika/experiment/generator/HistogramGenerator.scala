@@ -243,7 +243,7 @@ private class HistogramGenerator(parent: ExperimentGenerator, item: HistogramIte
 
     val f = item.value.filter
 
-    experiment.simulation.onIntegPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
 

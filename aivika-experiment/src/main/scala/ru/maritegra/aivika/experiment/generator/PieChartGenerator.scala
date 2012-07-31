@@ -173,7 +173,7 @@ private class PieChartGenerator(parent: ExperimentGenerator, item: PieChartItem,
 
   private def processLastPoint(run: RunBinding): Disposable = {
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterLastPointInRun(run.index) subscribe ((p: Point) => {
 
       run.file = generateFile(run)
 

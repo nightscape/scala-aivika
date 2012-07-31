@@ -296,7 +296,7 @@ private class XYChartGenerator(parent: ExperimentGenerator, item: XYChartItem, i
 
     val f = item.value.filter
 
-    experiment.simulation.onIntegPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
 

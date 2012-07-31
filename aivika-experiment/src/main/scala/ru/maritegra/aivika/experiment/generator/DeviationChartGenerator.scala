@@ -203,7 +203,7 @@ private class DeviationChartGenerator(parent: ExperimentGenerator, item: Deviati
 
     val f = item.value.filter
 
-    experiment.simulation.onIntegPoint subscribe ((p: Point) => {
+    experiment.simulation.afterIntegPoint subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
 

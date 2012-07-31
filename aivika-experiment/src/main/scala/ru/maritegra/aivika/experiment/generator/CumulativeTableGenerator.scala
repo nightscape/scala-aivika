@@ -175,7 +175,7 @@ private class CumulativeTableGenerator(parent: ExperimentGenerator, item: Cumula
 
     val f = item.value.filter
 
-    experiment.simulation.onLastPoint subscribe ((p: Point) => {
+    experiment.simulation.afterLastPoint subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
 

@@ -14,20 +14,32 @@ class Simulation {
 
   private val pausedSource = new PointEventSource
 
-  private val initPointSource = new PointEventSource
-  private val integPointSource = new PointEventSource
-  private val lastPointSource = new PointEventSource
+  private val onInitPointSource = new PointEventSource
+  private val onIntegPointSource = new PointEventSource
+  private val onLastPointSource = new PointEventSource
+
+  private val afterInitPointSource = new PointEventSource
+  private val afterIntegPointSource = new PointEventSource
+  private val afterLastPointSource = new PointEventSource
 
   def paused: Event[Point] = pausedSource.publish
   def pausedInRun(runIndex: Int): Event[Point] = pausedSource.publishInRun(runIndex)
 
-  def onInitPoint: Event[Point] = initPointSource.publish
-  def onIntegPoint: Event[Point] = integPointSource.publish
-  def onLastPoint: Event[Point] = lastPointSource.publish
+  def onInitPoint: Event[Point] = onInitPointSource.publish
+  def onIntegPoint: Event[Point] = onIntegPointSource.publish
+  def onLastPoint: Event[Point] = onLastPointSource.publish
 
-  def onInitPointInRun(runIndex: Int): Event[Point] = initPointSource.publishInRun(runIndex)
-  def onIntegPointInRun(runIndex: Int): Event[Point] = integPointSource.publishInRun(runIndex)
-  def onLastPointInRun(runIndex: Int): Event[Point] = lastPointSource.publishInRun(runIndex)
+  def onInitPointInRun(runIndex: Int): Event[Point] = onInitPointSource.publishInRun(runIndex)
+  def onIntegPointInRun(runIndex: Int): Event[Point] = onIntegPointSource.publishInRun(runIndex)
+  def onLastPointInRun(runIndex: Int): Event[Point] = onLastPointSource.publishInRun(runIndex)
+
+  def afterInitPoint: Event[Point] = afterInitPointSource.publish
+  def afterIntegPoint: Event[Point] = afterIntegPointSource.publish
+  def afterLastPoint: Event[Point] = afterLastPointSource.publish
+
+  def afterInitPointInRun(runIndex: Int): Event[Point] = afterInitPointSource.publishInRun(runIndex)
+  def afterIntegPointInRun(runIndex: Int): Event[Point] = afterIntegPointSource.publishInRun(runIndex)
+  def afterLastPointInRun(runIndex: Int): Event[Point] = afterLastPointSource.publishInRun(runIndex)
 
   private val runStartedSource = new RunEventSource
   private val runFinishedSource = new RunEventSource
@@ -87,19 +99,25 @@ class Simulation {
       if (n > 0) {
 
         val p = Point(specs, run, specs.time(0, 0), 0, 0)
-        initPointSource.trigger(this, p)
+
+        onInitPointSource.trigger(this, p)
+        afterInitPointSource.trigger(this, p)
       }
 
       for (i <- 0 to n-1) {
 
         val p = Point(specs, run, specs.time(i, 0), i, 0)
-        integPointSource.trigger(this, p)
+
+        onIntegPointSource.trigger(this, p)
+        afterIntegPointSource.trigger(this, p)
       }
 
       if (n > 0) {
 
         val p = Point(specs, run, specs.time(n-1, 0), n-1, 0)
-        lastPointSource.trigger(this, p)
+
+        onLastPointSource.trigger(this, p)
+        afterLastPointSource.trigger(this, p)
       }
 
       runFinishedSource.trigger(this, run)

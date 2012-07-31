@@ -300,7 +300,7 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
 
     val f = item.value.filter
 
-    experiment.simulation.onIntegPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
 
@@ -318,7 +318,7 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
     val f = item.value.filter
     val v = run.vars(column)
 
-    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterInitPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
         add(run, p.time, column, v.applyForDouble(p))
@@ -331,7 +331,7 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
     val f = item.value.filter
     val v = run.vars(column)
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterLastPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
         add(run, p.time, column, v.applyForDouble(p))

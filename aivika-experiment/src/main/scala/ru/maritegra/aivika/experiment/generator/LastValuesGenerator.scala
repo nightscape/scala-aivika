@@ -131,7 +131,7 @@ private class LastValuesGenerator(parent: ExperimentGenerator, item: LastValuesI
       binding.value = Some(data(p))
     })
 
-    val h2 = experiment.simulation.onLastPointInRun(run._1) subscribe ((p: Point) => {
+    val h2 = experiment.simulation.afterLastPointInRun(run._1) subscribe ((p: Point) => {
       binding.value = Some(data(p))
     })
 

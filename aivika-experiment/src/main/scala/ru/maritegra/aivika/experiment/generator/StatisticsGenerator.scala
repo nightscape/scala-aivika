@@ -190,7 +190,7 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
 
     val f = item.value.filter
 
-    experiment.simulation.onIntegPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
 
@@ -210,7 +210,7 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
     val v = run.vars(column)
     val t = run.stats(column)
 
-    experiment.simulation.onInitPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterInitPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
         t.add(p.time, v.applyForDouble(p))
@@ -224,7 +224,7 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
     val v = run.vars(column)
     val t = run.stats(column)
 
-    experiment.simulation.onLastPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterLastPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
         t.add(p.time, v.applyForDouble(p))

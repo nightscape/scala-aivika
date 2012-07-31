@@ -207,7 +207,7 @@ private class TableGenerator(parent: ExperimentGenerator, item: TableItem, id: I
 
     val f = item.value.filter
 
-    experiment.simulation.onIntegPointInRun(run.index) subscribe ((p: Point) => {
+    experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
       if (f.applyForBoolean(p)) {
 
