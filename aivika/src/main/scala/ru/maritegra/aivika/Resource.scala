@@ -11,11 +11,13 @@ package ru.maritegra.aivika
 import scala.collection.mutable.Queue
 import scala.util.continuations._
 
-class Resource(val queue: EventQueue, val initCount: Int) {
+class Resource(val queue: EventQueue, val initCount: Int, val createCount: Int) {
+
+  def this(queue: EventQueue, initCount: Int) = this(queue, initCount, initCount)
 
   private class State(var count: Int, var waitQueue: Queue[Unit => Dynamics[Unit]])
 
-  private val state = new RunMemo((r: Run) => new State(initCount, new Queue))
+  private val state = new RunMemo((r: Run) => new State(createCount, new Queue))
 
   val count: Dynamics[Int] = new Dynamics[Int] {
 
