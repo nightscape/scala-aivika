@@ -68,13 +68,9 @@ class AgentState private (val agent: Agent, val parent: Option[AgentState]) {
     }
   }
   
-  def addTimeout(dt: Double, action: Dynamics[Unit]): Dynamics[Unit] = new Dynamics[Unit] {
-    def apply(p: Point): Unit = addTimeout(dt, action, p)
-  }
+  def addTimeout(dt: Double, action: Dynamics[Unit]): Dynamics[Unit] = Dynamics.fromFunction(addTimeout(dt, action, _))
 
-  def addTimer(dt: Dynamics[Double], action: Dynamics[Unit]): Dynamics[Unit] = new Dynamics[Unit] {
-    def apply(p: Point): Unit = addTimer(dt, action, p)
-  }
+  def addTimer(dt: Dynamics[Double], action: Dynamics[Unit]): Dynamics[Unit] = Dynamics.fromFunction(addTimer(dt, action, _))
   
   def addTimeout(dt: Double, action: Dynamics[Unit], p: Point) {
 
@@ -86,15 +82,7 @@ class AgentState private (val agent: Agent, val parent: Option[AgentState]) {
 
     } else {
     
-      val m = new Dynamics[Unit] {
-        
-        def apply(p: Point): Unit = {
-          
-          if (s.version == v) {
-            action(p)
-          }
-        }
-      }
+      val m = Dynamics.fromFunction(p => if (s.version == v)  action(p))
 
       val q = agent.queue
       q.enqueue(p.time + dt, m, p)
@@ -111,27 +99,17 @@ class AgentState private (val agent: Agent, val parent: Option[AgentState]) {
 
     } else {
     
-      lazy val m1: Dynamics[Unit] = new Dynamics[Unit] {
-        
-        def apply(p: Point): Unit = {
-          
-          if (s.version == v) {
-            
+      lazy val m1: Dynamics[Unit] = Dynamics.fromFunction(p =>
+        if (s.version == v) {
             m2(p)
             action(p)
           }
-        }
-      }
+      )
       
-      lazy val m2: Dynamics[Unit] = new Dynamics[Unit] {
-        
-        def apply(p: Point): Unit = {
-          
+      lazy val m2: Dynamics[Unit] = Dynamics.fromFunction { p =>
           val q = agent.queue
           q.enqueue(p.time + dt.apply(p), m1, p)
-        }
       }
-
       m2(p)
     }
   }

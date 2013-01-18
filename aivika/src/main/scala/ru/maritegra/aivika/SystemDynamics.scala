@@ -10,33 +10,18 @@ package ru.maritegra.aivika
 
 object SystemDynamics {
 
-  val time = new Dynamics[Double] {
+  val time = Dynamics.fromFunction(_.time)
 
-    def apply(p: Point): Double = p.time
-  }
+  val starttime = Dynamics.fromFunction(_.specs.starttime)
 
-  val starttime = new Dynamics[Double] {
+  val stoptime = Dynamics.fromFunction(_.specs.stoptime)
 
-    def apply(p: Point): Double = p.specs.starttime
-  }
-
-  val stoptime = new Dynamics[Double] {
-
-    def apply(p: Point): Double = p.specs.stoptime
-  }
-
-  val dt = new Dynamics[Double] {
-
-    def apply(p: Point): Double = p.specs.dt
-  }
+  val dt = Dynamics.fromFunction(_.specs.dt)
 
   /**
    * Test whether the current simulation time falls on the integration time point.
    */
-  def timeIntegration = new Dynamics[Boolean] {
-
-    def apply(p: Point): Boolean = (p.phase >= 0)
-  }
+  def timeIntegration = Dynamics.fromFunction(_.phase >= 0)
 
   def integ(f: => Dynamics[Double], i: Dynamics[Double]): Dynamics[Double] = {
 

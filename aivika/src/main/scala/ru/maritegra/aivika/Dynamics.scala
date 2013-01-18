@@ -28,23 +28,15 @@ abstract class Dynamics[+A] extends (Point => A) {
   /**
    * The monadic `bind` function.
    */
-  def flatMap[B](cont: A => Dynamics[B]): Dynamics[B] = new Dynamics[B] {
-
-    def apply(p: Point): B = {
-
+  def flatMap[B](cont: A => Dynamics[B]): Dynamics[B] = Dynamics.fromFunction { p =>
       cont(outer(p))(p)
-    }
   }
 
   /**
    * The mapping function.
    */
-  def map[B](f: A => B): Dynamics[B] = new Dynamics[B] {
-
-    def apply(p: Point): B = {
-
+  def map[B](f: A => B): Dynamics[B] = Dynamics.fromFunction{ p =>
       f(outer(p))
-    }
   }
 
   /**
@@ -175,90 +167,12 @@ object Dynamics {
   /**
    * The monadic `return` function.
    */
-  def apply[A](a: A): Dynamics[A] = new Dynamics[A] {
-
-    def apply(p: Point): A = a
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Double): Dynamics[Double] = new Dynamics[Double] {
-
-    def apply(p: Point): Double = a
-
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Float): Dynamics[Float] = new Dynamics[Float] {
-
-    def apply(p: Point): Float = a
-
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Long): Dynamics[Long] = new Dynamics[Long] {
-
-    def apply(p: Point): Long = a
-
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Int): Dynamics[Int] = new Dynamics[Int] {
-
-    def apply(p: Point): Int = a
-
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Short): Dynamics[Short] = new Dynamics[Short] {
-
-    def apply(p: Point): Short = a
-
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Byte): Dynamics[Byte] = new Dynamics[Byte] {
-
-    def apply(p: Point): Byte = a
-
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Boolean): Dynamics[Boolean] = new Dynamics[Boolean] {
-
-    def apply(p: Point): Boolean = a
-
-  }
-
-  /**
-   * The monadic `return` function.
-   */
-  def apply(a: Char): Dynamics[Char] = new Dynamics[Char] {
-
-    def apply(p: Point): Char = a
-
-  }
+  def apply[A](a: A): Dynamics[A] = Dynamics.fromFunction(p => a)
 
   /**
    * Creates a process from the sequence.
    */
-  def fromSeq[A](xs: Dynamics[A]*) = new Dynamics[Seq[A]] {
-
-    def apply(p: Point): Seq[A] = xs.map(_.apply(p))
-  }
+  def fromSeq[A](xs: Dynamics[A]*) = Dynamics.fromFunction(p => xs.map(_.apply(p)))
 
   /**
    * Creates a process from the function.

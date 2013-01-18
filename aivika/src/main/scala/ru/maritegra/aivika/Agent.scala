@@ -94,13 +94,9 @@ class Agent(val queue: EventQueue) {
     }
   }
   
-  def activateState(st: AgentState): Dynamics[Unit] = new Dynamics[Unit] {
-    def apply(p: Point): Unit = activateState(st, p)
-  }
+  def activateState(st: AgentState): Dynamics[Unit] = Dynamics.fromFunction(activateState(st, _))
 
-  def initState(st: AgentState): Dynamics[Unit] = new Dynamics[Unit] {
-    def apply(p: Point): Unit = initState(st, p)
-  }
+  def initState(st: AgentState): Dynamics[Unit] = Dynamics.fromFunction(initState(st, _))
 
   def activateState(st: AgentState, p: Point) {
 
