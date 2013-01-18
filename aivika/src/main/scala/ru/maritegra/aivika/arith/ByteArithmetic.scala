@@ -14,21 +14,13 @@ abstract class ByteArithmetic extends UnaryArithmetic[Byte, Int] {
 
   def plus(x: Dynamics[Byte]) = new Dynamics[Int] {
 
-    def apply(p: Point): Int = x.applyForByte(p)
+    def apply(p: Point): Int = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForByte(p)
-    override def applyForFloat(p: Point): Float = x.applyForByte(p)
-    override def applyForLong(p: Point): Long = x.applyForByte(p)
-    override def applyForInt(p: Point): Int = x.applyForByte(p)
   }
 
   def minus(x: Dynamics[Byte]) = new Dynamics[Int] {
 
-    def apply(p: Point): Int = - x.applyForByte(p)
+    def apply(p: Point): Int = - x.apply(p)
 
-    override def applyForDouble(p: Point): Double = - x.applyForByte(p)
-    override def applyForFloat(p: Point): Float = - x.applyForByte(p)
-    override def applyForLong(p: Point): Long = - x.applyForByte(p)
-    override def applyForInt(p: Point): Int = - x.applyForByte(p)
   }
 }

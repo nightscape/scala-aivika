@@ -302,12 +302,12 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
 
     experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val vs = run.vars
 
         for (i <- columns) {
-          add(run, p.time, i, vs(i).applyForDouble(p))
+          add(run, p.time, i, vs(i).apply(p))
         }
       }
     })
@@ -320,8 +320,8 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
 
     experiment.simulation.afterInitPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
-        add(run, p.time, column, v.applyForDouble(p))
+      if (f.apply(p)) {
+        add(run, p.time, column, v.apply(p))
       }
     })
   }
@@ -333,8 +333,8 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
 
     experiment.simulation.afterLastPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
-        add(run, p.time, column, v.applyForDouble(p))
+      if (f.apply(p)) {
+        add(run, p.time, column, v.apply(p))
       }
     })
   }
@@ -348,8 +348,8 @@ private class TimeSeriesGenerator(parent: ExperimentGenerator, item: TimeSeriesI
 
     stateful.changedInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
-        add(run, p.time, column, v.applyForDouble(p))
+      if (f.apply(p)) {
+        add(run, p.time, column, v.apply(p))
       }
     })
   }

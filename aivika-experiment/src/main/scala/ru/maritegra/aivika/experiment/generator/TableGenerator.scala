@@ -209,7 +209,7 @@ private class TableGenerator(parent: ExperimentGenerator, item: TableItem, id: I
 
     experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val vs = run.vars
         val xs = new Array[Any](vs.length)
@@ -232,7 +232,7 @@ private class TableGenerator(parent: ExperimentGenerator, item: TableItem, id: I
 
     stateful.changedInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val x = v(p)
 

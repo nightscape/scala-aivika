@@ -14,21 +14,13 @@ abstract class ShortArithmetic extends UnaryArithmetic[Short, Int] {
 
   def plus(x: Dynamics[Short]) = new Dynamics[Int] {
 
-    def apply(p: Point): Int = x.applyForShort(p)
+    def apply(p: Point): Int = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForShort(p)
-    override def applyForFloat(p: Point): Float = x.applyForShort(p)
-    override def applyForLong(p: Point): Long = x.applyForShort(p)
-    override def applyForInt(p: Point): Int = x.applyForShort(p)
   }
 
   def minus(x: Dynamics[Short]) = new Dynamics[Int] {
 
-    def apply(p: Point): Int = - x.applyForShort(p)
+    def apply(p: Point): Int = - x.apply(p)
 
-    override def applyForDouble(p: Point): Double = - x.applyForShort(p)
-    override def applyForFloat(p: Point): Float = - x.applyForShort(p)
-    override def applyForLong(p: Point): Long = - x.applyForShort(p)
-    override def applyForInt(p: Point): Int = - x.applyForShort(p)
   }
 }

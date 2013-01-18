@@ -183,12 +183,12 @@ private class CumulativeXYChartGenerator(parent: ExperimentGenerator, item: Cumu
 
     experiment.simulation.afterLastPoint subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val x = item.value.x.data(p)
 
         val vs = run.vars
-        val bs = vs map (_.applyForDouble(p))
+        val bs = vs map (_.apply(p))
 
         val d = (p.run.index, x, bs)
 

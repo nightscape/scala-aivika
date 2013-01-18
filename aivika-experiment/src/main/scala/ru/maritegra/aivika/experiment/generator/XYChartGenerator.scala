@@ -298,14 +298,14 @@ private class XYChartGenerator(parent: ExperimentGenerator, item: XYChartItem, i
 
     experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
-        val x = item.value.x.data.applyForDouble(p)
+        val x = item.value.x.data.apply(p)
 
         val vs = run.vars
 
         for (i <- 0 to run.vars.length - 1) {
-          run.data(i).add(x, vs(i).applyForDouble(p))
+          run.data(i).add(x, vs(i).apply(p))
         }
       }
     })

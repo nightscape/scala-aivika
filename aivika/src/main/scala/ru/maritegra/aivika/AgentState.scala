@@ -128,7 +128,7 @@ class AgentState private (val agent: Agent, val parent: Option[AgentState]) {
         def apply(p: Point): Unit = {
           
           val q = agent.queue
-          q.enqueue(p.time + dt.applyForDouble(p), m1, p)
+          q.enqueue(p.time + dt.apply(p), m1, p)
         }
       }
 

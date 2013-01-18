@@ -14,61 +14,29 @@ abstract class LongMath extends NumMath[Long] {
 
   def abs(x: Dynamics[Long]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = 
-      math.abs(x.applyForLong(p))
+    def apply(p: Point): Long =
+      math.abs(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.abs(x.applyForLong(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.abs(x.applyForLong(p))
-
-    override def applyForLong(p: Point): Long = 
-      math.abs(x.applyForLong(p))
   }
 
   def max(x: Dynamics[Long], y: Dynamics[Long]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = 
-      math.max(x.applyForLong(p), y.applyForLong(p))
+    def apply(p: Point): Long =
+      math.max(x.apply(p), y.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.max(x.applyForLong(p), y.applyForLong(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.max(x.applyForLong(p), y.applyForLong(p))
-
-    override def applyForLong(p: Point): Long = 
-      math.max(x.applyForLong(p), y.applyForLong(p))
   }
 
   def min(x: Dynamics[Long], y: Dynamics[Long]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = 
-      math.min(x.applyForLong(p), y.applyForLong(p))
+    def apply(p: Point): Long =
+      math.min(x.apply(p), y.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.min(x.applyForLong(p), y.applyForLong(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.min(x.applyForLong(p), y.applyForLong(p))
-
-    override def applyForLong(p: Point): Long = 
-      math.min(x.applyForLong(p), y.applyForLong(p))
   }
 
   def signum(x: Dynamics[Long]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = 
-      math.signum(x.applyForLong(p))
+    def apply(p: Point): Long =
+      math.signum(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.signum(x.applyForLong(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.signum(x.applyForLong(p))
-
-    override def applyForLong(p: Point): Long = 
-      math.signum(x.applyForLong(p))
   }
 }

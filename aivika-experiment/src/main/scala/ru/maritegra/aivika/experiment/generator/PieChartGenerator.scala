@@ -182,7 +182,7 @@ private class PieChartGenerator(parent: ExperimentGenerator, item: PieChartItem,
         val r = new DefaultPieDataset
 
         for (i <- 0 to run.names.length - 1) {
-          r.setValue(run.names(i), run.vars(i).applyForDouble(p))
+          r.setValue(run.names(i), run.vars(i).apply(p))
         }
 
         r

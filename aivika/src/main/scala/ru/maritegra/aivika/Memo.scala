@@ -67,7 +67,7 @@ object Memo {
                           arr: Array[Array[Double]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForDouble(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Double = {
@@ -79,7 +79,7 @@ object Memo {
                          arr: Array[Array[Float]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForFloat(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Float = {
@@ -91,7 +91,7 @@ object Memo {
                         arr: Array[Array[Long]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForLong(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Long = {
@@ -103,7 +103,7 @@ object Memo {
                        arr: Array[Array[Int]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForInt(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Int = {
@@ -115,7 +115,7 @@ object Memo {
                          arr: Array[Array[Short]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForShort(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Short = {
@@ -127,7 +127,7 @@ object Memo {
                         arr: Array[Array[Byte]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForByte(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Byte = {
@@ -139,7 +139,7 @@ object Memo {
                            arr: Array[Array[Boolean]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForBoolean(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Boolean = {
@@ -151,7 +151,7 @@ object Memo {
                         arr: Array[Array[Char]]) extends Acc {
 
     override def update(p: Point) {
-      arr(p.phase)(p.iteration) = x.applyForChar(p)
+      arr(p.phase)(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Char = {
@@ -232,9 +232,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Double] {
 
-      def apply(p: Point): Double = applyForDouble(p)
-
-      override def applyForDouble(p: Point): Double = {
+      def apply(p: Point): Double = {
 
         val acc = f(p.run)
 
@@ -255,11 +253,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Float] {
 
-      def apply(p: Point): Float = applyForFloat(p)
-
-      override def applyForDouble(p: Point): Double = applyForFloat(p)
-
-      override def applyForFloat(p: Point): Float = {
+      def apply(p: Point): Float = {
 
         val acc = f(p.run)
 
@@ -280,13 +274,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Long] {
 
-      def apply(p: Point): Long = applyForLong(p)
-
-      override def applyForDouble(p: Point): Double = applyForLong(p)
-
-      override def applyForFloat(p: Point): Float = applyForLong(p)
-
-      override def applyForLong(p: Point): Long = {
+      def apply(p: Point): Long = {
 
         val acc = f(p.run)
 
@@ -307,15 +295,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Int] {
 
-      def apply(p: Point): Int = applyForInt(p)
-
-      override def applyForDouble(p: Point): Double = applyForInt(p)
-
-      override def applyForFloat(p: Point): Float = applyForInt(p)
-
-      override def applyForLong(p: Point): Long = applyForInt(p)
-
-      override def applyForInt(p: Point): Int = {
+      def apply(p: Point): Int = {
 
         val acc = f(p.run)
 
@@ -336,17 +316,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Short] {
 
-      def apply(p: Point): Short = applyForShort(p)
-
-      override def applyForDouble(p: Point): Double = applyForShort(p)
-
-      override def applyForFloat(p: Point): Float = applyForShort(p)
-
-      override def applyForLong(p: Point): Long = applyForShort(p)
-
-      override def applyForInt(p: Point): Int = applyForShort(p)
-
-      override def applyForShort(p: Point): Short = {
+      def apply(p: Point): Short = {
 
         val acc = f(p.run)
 
@@ -367,19 +337,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Byte] {
 
-      def apply(p: Point): Byte = applyForByte(p)
-
-      override def applyForDouble(p: Point): Double = applyForByte(p)
-
-      override def applyForFloat(p: Point): Float = applyForByte(p)
-
-      override def applyForLong(p: Point): Long = applyForByte(p)
-
-      override def applyForInt(p: Point): Int = applyForByte(p)
-
-      override def applyForShort(p: Point): Short = applyForByte(p)
-
-      override def applyForByte(p: Point): Byte = {
+      def apply(p: Point): Byte = {
 
         val acc = f(p.run)
 
@@ -400,9 +358,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Boolean] {
 
-      def apply(p: Point): Boolean = applyForBoolean(p)
-
-      override def applyForBoolean(p: Point): Boolean = {
+      def apply(p: Point): Boolean = {
 
         val acc = f(p.run)
 
@@ -423,9 +379,7 @@ object Memo {
 
     Interpolation.discrete(new Dynamics[Char] {
 
-      def apply(p: Point): Char = applyForChar(p)
-
-      override def applyForChar(p: Point): Char = {
+      def apply(p: Point): Char = {
 
         val acc = f(p.run)
 
@@ -500,7 +454,7 @@ object Memo {
                            arr: Array[Double]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForDouble(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Double = {
@@ -512,7 +466,7 @@ object Memo {
                           arr: Array[Float]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForFloat(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Float = {
@@ -524,7 +478,7 @@ object Memo {
                          arr: Array[Long]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForLong(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Long = {
@@ -536,7 +490,7 @@ object Memo {
                         arr: Array[Int]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForInt(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Int = {
@@ -548,7 +502,7 @@ object Memo {
                           arr: Array[Short]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForShort(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Short = {
@@ -560,7 +514,7 @@ object Memo {
                          arr: Array[Byte]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForByte(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Byte = {
@@ -572,7 +526,7 @@ object Memo {
                             arr: Array[Boolean]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForBoolean(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Boolean = {
@@ -584,7 +538,7 @@ object Memo {
                          arr: Array[Char]) extends Acc0 {
 
     override def update(p: Point) {
-      arr(p.iteration) = x.applyForChar(p)
+      arr(p.iteration) = x.apply(p)
     }
 
     def apply(p: Point): Char = {
@@ -665,9 +619,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Double] {
 
-      def apply(p: Point): Double = applyForDouble(p)
-
-      override def applyForDouble(p: Point): Double = {
+      def apply(p: Point): Double = {
 
         val acc = f(p.run)
 
@@ -688,11 +640,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Float] {
 
-      def apply(p: Point): Float = applyForFloat(p)
-
-      override def applyForDouble(p: Point): Double = applyForFloat(p)
-
-      override def applyForFloat(p: Point): Float = {
+      def apply(p: Point): Float = {
 
         val acc = f(p.run)
 
@@ -713,13 +661,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Long] {
 
-      def apply(p: Point): Long = applyForLong(p)
-
-      override def applyForDouble(p: Point): Double = applyForLong(p)
-
-      override def applyForFloat(p: Point): Float = applyForLong(p)
-
-      override def applyForLong(p: Point): Long = {
+      def apply(p: Point): Long = {
 
         val acc = f(p.run)
 
@@ -740,15 +682,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Int] {
 
-      def apply(p: Point): Int = applyForInt(p)
-
-      override def applyForDouble(p: Point): Double = applyForInt(p)
-
-      override def applyForFloat(p: Point): Float = applyForInt(p)
-
-      override def applyForLong(p: Point): Long = applyForInt(p)
-
-      override def applyForInt(p: Point): Int = {
+      def apply(p: Point): Int = {
 
         val acc = f(p.run)
 
@@ -769,17 +703,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Short] {
 
-      def apply(p: Point): Short = applyForShort(p)
-
-      override def applyForDouble(p: Point): Double = applyForShort(p)
-
-      override def applyForFloat(p: Point): Float = applyForShort(p)
-
-      override def applyForLong(p: Point): Long = applyForShort(p)
-
-      override def applyForInt(p: Point): Int = applyForShort(p)
-
-      override def applyForShort(p: Point): Short = {
+      def apply(p: Point): Short = {
 
         val acc = f(p.run)
 
@@ -800,19 +724,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Byte] {
 
-      def apply(p: Point): Byte = applyForByte(p)
-
-      override def applyForDouble(p: Point): Double = applyForByte(p)
-
-      override def applyForFloat(p: Point): Float = applyForByte(p)
-
-      override def applyForLong(p: Point): Long = applyForByte(p)
-
-      override def applyForInt(p: Point): Int = applyForByte(p)
-
-      override def applyForShort(p: Point): Short = applyForByte(p)
-
-      override def applyForByte(p: Point): Byte = {
+      def apply(p: Point): Byte = {
 
         val acc = f(p.run)
 
@@ -833,9 +745,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Boolean] {
 
-      def apply(p: Point): Boolean = applyForBoolean(p)
-
-      override def applyForBoolean(p: Point): Boolean = {
+      def apply(p: Point): Boolean = {
 
         val acc = f(p.run)
 
@@ -856,9 +766,7 @@ object Memo {
 
     Interpolation.discrete0(new Dynamics[Char] {
 
-      def apply(p: Point): Char = applyForChar(p)
-
-      override def applyForChar(p: Point): Char = {
+      def apply(p: Point): Char = {
 
         val acc = f(p.run)
 

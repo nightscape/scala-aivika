@@ -14,73 +14,43 @@ abstract class FloatMath extends RealMath[Float] {
 
   def abs(x: Dynamics[Float]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = 
-      math.abs(x.applyForFloat(p))
+    def apply(p: Point): Float =
+      math.abs(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.abs(x.applyForFloat(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.abs(x.applyForFloat(p))
   }
 
   def max(x: Dynamics[Float], y: Dynamics[Float]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = 
-      math.max(x.applyForFloat(p), y.applyForFloat(p))
+    def apply(p: Point): Float =
+      math.max(x.apply(p), y.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.max(x.applyForFloat(p), y.applyForFloat(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.max(x.applyForFloat(p), y.applyForFloat(p))
   }
 
   def min(x: Dynamics[Float], y: Dynamics[Float]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = 
-      math.min(x.applyForFloat(p), y.applyForFloat(p))
+    def apply(p: Point): Float =
+      math.min(x.apply(p), y.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.min(x.applyForFloat(p), y.applyForFloat(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.min(x.applyForFloat(p), y.applyForFloat(p))
   }
 
   def signum(x: Dynamics[Float]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = 
-      math.signum(x.applyForFloat(p))
+    def apply(p: Point): Float =
+      math.signum(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.signum(x.applyForFloat(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.signum(x.applyForFloat(p))
   }
 
   def round(x: Dynamics[Float]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = 
-      math.round(x.applyForFloat(p))
+    def apply(p: Point): Float =
+      math.round(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.round(x.applyForFloat(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.round(x.applyForFloat(p))
   }
 
   def ulp(x: Dynamics[Float]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = 
-      math.ulp(x.applyForFloat(p))
+    def apply(p: Point): Float =
+      math.ulp(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.ulp(x.applyForFloat(p))
-
-    override def applyForFloat(p: Point): Float = 
-      math.ulp(x.applyForFloat(p))
   }
 }

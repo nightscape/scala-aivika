@@ -14,55 +14,43 @@ abstract class DoubleMath extends RealMath[Double] {
 
   def abs(x: Dynamics[Double]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = 
-      math.abs(x.applyForDouble(p))
+    def apply(p: Point): Double =
+      math.abs(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.abs(x.applyForDouble(p))
   }
 
   def max(x: Dynamics[Double], y: Dynamics[Double]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = 
-      math.max(x.applyForDouble(p), y.applyForDouble(p))
+    def apply(p: Point): Double =
+      math.max(x.apply(p), y.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.max(x.applyForDouble(p), y.applyForDouble(p))
   }
 
   def min(x: Dynamics[Double], y: Dynamics[Double]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = 
-      math.min(x.applyForDouble(p), y.applyForDouble(p))
+    def apply(p: Point): Double =
+      math.min(x.apply(p), y.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.min(x.applyForDouble(p), y.applyForDouble(p))
   }
 
   def signum(x: Dynamics[Double]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = 
-      math.signum(x.applyForDouble(p))
+    def apply(p: Point): Double =
+      math.signum(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.signum(x.applyForDouble(p))
   }
 
   def round(x: Dynamics[Double]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = 
-      math.round(x.applyForDouble(p))
+    def apply(p: Point): Double =
+      math.round(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.round(x.applyForDouble(p))
   }
 
   def ulp(x: Dynamics[Double]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = 
-      math.ulp(x.applyForDouble(p))
+    def apply(p: Point): Double =
+      math.ulp(x.apply(p))
 
-    override def applyForDouble(p: Point): Double = 
-      math.ulp(x.applyForDouble(p))
   }
 }

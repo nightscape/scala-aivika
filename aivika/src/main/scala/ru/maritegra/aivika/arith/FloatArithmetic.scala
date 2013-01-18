@@ -16,9 +16,7 @@ abstract class FloatArithmetic extends UnaryArithmetic[Float, Float] {
 
   def minus(x: Dynamics[Float]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = - x.applyForFloat(p)
+    def apply(p: Point): Float = - x.apply(p)
 
-    override def applyForDouble(p: Point): Double = - x.applyForFloat(p)
-    override def applyForFloat(p: Point): Float = - x.applyForFloat(p)
   }
 }

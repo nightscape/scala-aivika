@@ -88,127 +88,92 @@ package object aivika {
 
   implicit def float2double(x: Dynamics[Float]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = x.applyForFloat(p)
+    def apply(p: Point): Double = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForFloat(p)
   }
 
   implicit def long2double(x: Dynamics[Long]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = x.applyForLong(p)
+    def apply(p: Point): Double = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForLong(p)
   }
 
   implicit def int2double(x: Dynamics[Int]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = x.applyForInt(p)
+    def apply(p: Point): Double = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForInt(p)
   }
 
   implicit def short2double(x: Dynamics[Short]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = x.applyForShort(p)
+    def apply(p: Point): Double = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForShort(p)
   }
 
   implicit def byte2double(x: Dynamics[Byte]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = x.applyForByte(p)
+    def apply(p: Point): Double = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForByte(p)
   }
 
   implicit def long2float(x: Dynamics[Long]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = x.applyForLong(p)
+    def apply(p: Point): Float = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForLong(p)
-    override def applyForFloat(p: Point): Float = x.applyForLong(p)
   }
 
   implicit def int2float(x: Dynamics[Int]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = x.applyForInt(p)
+    def apply(p: Point): Float = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForInt(p)
-    override def applyForFloat(p: Point): Float = x.applyForInt(p)
   }
 
   implicit def short2float(x: Dynamics[Short]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = x.applyForShort(p)
+    def apply(p: Point): Float = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForShort(p)
-    override def applyForFloat(p: Point): Float = x.applyForShort(p)
   }
 
   implicit def byte2float(x: Dynamics[Byte]) = new Dynamics[Float] {
 
-    def apply(p: Point): Float = x.applyForByte(p)
+    def apply(p: Point): Float = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForByte(p)
-    override def applyForFloat(p: Point): Float = x.applyForByte(p)
   }
 
   implicit def int2long(x: Dynamics[Int]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = x.applyForInt(p)
+    def apply(p: Point): Long = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForInt(p)
-    override def applyForFloat(p: Point): Float = x.applyForInt(p)
-    override def applyForLong(p: Point): Long = x.applyForInt(p)
   }
 
   implicit def short2long(x: Dynamics[Short]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = x.applyForShort(p)
+    def apply(p: Point): Long = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForShort(p)
-    override def applyForFloat(p: Point): Float = x.applyForShort(p)
-    override def applyForLong(p: Point): Long = x.applyForShort(p)
   }
 
   implicit def byte2long(x: Dynamics[Byte]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = x.applyForByte(p)
+    def apply(p: Point): Long = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForByte(p)
-    override def applyForFloat(p: Point): Float = x.applyForByte(p)
-    override def applyForLong(p: Point): Long = x.applyForByte(p)
   }
 
   implicit def short2int(x: Dynamics[Short]) = new Dynamics[Int] {
 
-    def apply(p: Point): Int = x.applyForShort(p)
+    def apply(p: Point): Int = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForShort(p)
-    override def applyForFloat(p: Point): Float = x.applyForShort(p)
-    override def applyForLong(p: Point): Long = x.applyForShort(p)
-    override def applyForInt(p: Point): Int = x.applyForShort(p)
   }
 
   implicit def byte2int(x: Dynamics[Byte]) = new Dynamics[Int] {
 
-    def apply(p: Point): Int = x.applyForByte(p)
+    def apply(p: Point): Int = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForByte(p)
-    override def applyForFloat(p: Point): Float = x.applyForByte(p)
-    override def applyForLong(p: Point): Long = x.applyForByte(p)
-    override def applyForInt(p: Point): Int = x.applyForByte(p)
   }
 
   implicit def byte2short(x: Dynamics[Byte]) = new Dynamics[Short] {
 
-    def apply(p: Point): Short = x.applyForByte(p)
+    def apply(p: Point): Short = x.apply(p)
 
-    override def applyForDouble(p: Point): Double = x.applyForByte(p)
-    override def applyForFloat(p: Point): Float = x.applyForByte(p)
-    override def applyForLong(p: Point): Long = x.applyForByte(p)
-    override def applyForInt(p: Point): Int = x.applyForByte(p)
-    override def applyForShort(p: Point): Short = x.applyForByte(p)
   }
 
   implicit object DoubleMath extends dynmath.DoubleMath

@@ -16,60 +16,40 @@ abstract class Int2FloatArithmetic
   def add(x: Dynamics[Int], y: Dynamics[Float]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForInt(p) + y.applyForFloat(p)
+      x.apply(p) + y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForInt(p) + y.applyForFloat(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForInt(p) + y.applyForFloat(p)
-  }
+    
+      }
     
   def sub(x: Dynamics[Int], y: Dynamics[Float]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForInt(p) - y.applyForFloat(p)
+      x.apply(p) - y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForInt(p) - y.applyForFloat(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForInt(p) - y.applyForFloat(p)
-  }
+    
+      }
     
   def mult(x: Dynamics[Int], y: Dynamics[Float]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForInt(p) * y.applyForFloat(p)
+      x.apply(p) * y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForInt(p) * y.applyForFloat(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForInt(p) * y.applyForFloat(p)
-  }
+    
+      }
     
   def div(x: Dynamics[Int], y: Dynamics[Float]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForInt(p) / y.applyForFloat(p)
+      x.apply(p) / y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForInt(p) / y.applyForFloat(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForInt(p) / y.applyForFloat(p)
-  }
+    
+      }
     
   def rem(x: Dynamics[Int], y: Dynamics[Float]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForInt(p) % y.applyForFloat(p)
+      x.apply(p) % y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForInt(p) % y.applyForFloat(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForInt(p) % y.applyForFloat(p)
-  }
+    
+      }
 }

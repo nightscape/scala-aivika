@@ -192,13 +192,13 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
 
     experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val vs = run.vars
         val ts = run.stats
         
         for (i <- columns) {
-          ts(i).add(p.time, vs(i).applyForDouble(p))
+          ts(i).add(p.time, vs(i).apply(p))
         }
       }
     })
@@ -212,8 +212,8 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
 
     experiment.simulation.afterInitPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
-        t.add(p.time, v.applyForDouble(p))
+      if (f.apply(p)) {
+        t.add(p.time, v.apply(p))
       }
     })
   }
@@ -226,8 +226,8 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
 
     experiment.simulation.afterLastPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
-        t.add(p.time, v.applyForDouble(p))
+      if (f.apply(p)) {
+        t.add(p.time, v.apply(p))
       }
     })
   }
@@ -242,8 +242,8 @@ private class StatisticsGenerator(parent: ExperimentGenerator, item: StatisticsI
 
     stateful.changedInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
-        t.add(p.time, v.applyForDouble(p))
+      if (f.apply(p)) {
+        t.add(p.time, v.apply(p))
       }
     })
   }

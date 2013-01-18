@@ -16,90 +16,50 @@ abstract class Byte2ShortArithmetic
   def add(x: Dynamics[Byte], y: Dynamics[Short]) = new Dynamics[Int] {
 
     def apply(p: Point): Int = 
-      x.applyForByte(p) + y.applyForShort(p)
+      x.apply(p) + y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) + y.applyForShort(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) + y.applyForShort(p)
-
-    override def applyForLong(p: Point): Long = 
-      x.applyForByte(p) + y.applyForShort(p)
-
-    override def applyForInt(p: Point): Int = 
-      x.applyForByte(p) + y.applyForShort(p)
-  }
+    
+    
+    
+      }
 
   def sub(x: Dynamics[Byte], y: Dynamics[Short]) = new Dynamics[Int] {
 
     def apply(p: Point): Int = 
-      x.applyForByte(p) - y.applyForShort(p)
+      x.apply(p) - y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) - y.applyForShort(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) - y.applyForShort(p)
-
-    override def applyForLong(p: Point): Long = 
-      x.applyForByte(p) - y.applyForShort(p)
-
-    override def applyForInt(p: Point): Int = 
-      x.applyForByte(p) - y.applyForShort(p)
-  }
+    
+    
+    
+      }
 
   def mult(x: Dynamics[Byte], y: Dynamics[Short]) = new Dynamics[Int] {
 
     def apply(p: Point): Int = 
-      x.applyForByte(p) * y.applyForShort(p)
+      x.apply(p) * y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) * y.applyForShort(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) * y.applyForShort(p)
-
-    override def applyForLong(p: Point): Long = 
-      x.applyForByte(p) * y.applyForShort(p)
-
-    override def applyForInt(p: Point): Int = 
-      x.applyForByte(p) * y.applyForShort(p)
-  }
+    
+    
+    
+      }
 
   def div(x: Dynamics[Byte], y: Dynamics[Short]) = new Dynamics[Int] {
 
     def apply(p: Point): Int = 
-      x.applyForByte(p) / y.applyForShort(p)
+      x.apply(p) / y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) / y.applyForShort(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) / y.applyForShort(p)
-
-    override def applyForLong(p: Point): Long = 
-      x.applyForByte(p) / y.applyForShort(p)
-
-    override def applyForInt(p: Point): Int = 
-      x.applyForByte(p) / y.applyForShort(p)
-  }
+    
+    
+    
+      }
 
   def rem(x: Dynamics[Byte], y: Dynamics[Short]) = new Dynamics[Int] {
 
     def apply(p: Point): Int = 
-      x.applyForByte(p) % y.applyForShort(p)
+      x.apply(p) % y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) % y.applyForShort(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) % y.applyForShort(p)
-
-    override def applyForLong(p: Point): Long = 
-      x.applyForByte(p) % y.applyForShort(p)
-
-    override def applyForInt(p: Point): Int = 
-      x.applyForByte(p) % y.applyForShort(p)
-  }
+    
+    
+    
+      }
 }

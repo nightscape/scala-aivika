@@ -14,62 +14,32 @@ abstract class Byte2FloatArithmetic
   extends BinaryArithmetic[Byte, Float, Float] {
     
   def add(x: Dynamics[Byte], y: Dynamics[Float]) = new Dynamics[Float] {
-    
-    def apply(p: Point): Float = 
-      x.applyForByte(p) + y.applyForFloat(p)
-    
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) + y.applyForFloat(p)
 
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) + y.applyForFloat(p)
+    def apply(p: Point): Float = 
+      x.apply(p) + y.apply(p)
   }
     
   def sub(x: Dynamics[Byte], y: Dynamics[Float]) = new Dynamics[Float] {
-    
-    def apply(p: Point): Float = 
-      x.applyForByte(p) - y.applyForFloat(p)
-    
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) - y.applyForFloat(p)
 
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) - y.applyForFloat(p)
+    def apply(p: Point): Float = 
+      x.apply(p) - y.apply(p)
   }
     
   def mult(x: Dynamics[Byte], y: Dynamics[Float]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForByte(p) * y.applyForFloat(p)
-    
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) * y.applyForFloat(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) * y.applyForFloat(p)
+      x.apply(p) * y.apply(p)
   }
     
   def div(x: Dynamics[Byte], y: Dynamics[Float]) = new Dynamics[Float] {
-    
-    def apply(p: Point): Float = 
-      x.applyForByte(p) / y.applyForFloat(p)
-    
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) / y.applyForFloat(p)
 
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) / y.applyForFloat(p)
+    def apply(p: Point): Float = 
+      x.apply(p) / y.apply(p)
   }
     
   def rem(x: Dynamics[Byte], y: Dynamics[Float]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForByte(p) % y.applyForFloat(p)
-    
-    override def applyForDouble(p: Point): Double = 
-      x.applyForByte(p) % y.applyForFloat(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForByte(p) % y.applyForFloat(p)
+      x.apply(p) % y.apply(p)
   }
 }

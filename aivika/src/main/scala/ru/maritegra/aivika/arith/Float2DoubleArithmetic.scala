@@ -16,45 +16,35 @@ abstract class Float2DoubleArithmetic
   def add(x: Dynamics[Float], y: Dynamics[Double]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForFloat(p) + y.applyForDouble(p)
+      x.apply(p) + y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) + y.applyForDouble(p)
-  }
+      }
 
   def sub(x: Dynamics[Float], y: Dynamics[Double]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForFloat(p) - y.applyForDouble(p)
+      x.apply(p) - y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) - y.applyForDouble(p)
-  }
+      }
 
   def mult(x: Dynamics[Float], y: Dynamics[Double]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForFloat(p) * y.applyForDouble(p)
+      x.apply(p) * y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) * y.applyForDouble(p)
-  }
+      }
 
   def div(x: Dynamics[Float], y: Dynamics[Double]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForFloat(p) / y.applyForDouble(p)
+      x.apply(p) / y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) / y.applyForDouble(p)
-  }
+      }
 
   def rem(x: Dynamics[Float], y: Dynamics[Double]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForFloat(p) % y.applyForDouble(p)
+      x.apply(p) % y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) % y.applyForDouble(p)
-  }
+      }
 }

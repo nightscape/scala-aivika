@@ -16,11 +16,7 @@ abstract class IntArithmetic extends UnaryArithmetic[Int, Int] {
 
   def minus(x: Dynamics[Int]) = new Dynamics[Int] {
 
-    def apply(p: Point): Int = - x.applyForInt(p)
+    def apply(p: Point): Int = - x.apply(p)
 
-    override def applyForDouble(p: Point): Double = - x.applyForInt(p)
-    override def applyForFloat(p: Point): Float = - x.applyForInt(p)
-    override def applyForLong(p: Point): Long = - x.applyForInt(p)
-    override def applyForInt(p: Point): Int = - x.applyForInt(p)
   }
 }

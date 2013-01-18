@@ -13,25 +13,21 @@ object SystemDynamics {
   val time = new Dynamics[Double] {
 
     def apply(p: Point): Double = p.time
-    override def applyForDouble(p: Point): Double = p.time
   }
 
   val starttime = new Dynamics[Double] {
 
     def apply(p: Point): Double = p.specs.starttime
-    override def applyForDouble(p: Point): Double = p.specs.starttime
   }
 
   val stoptime = new Dynamics[Double] {
 
     def apply(p: Point): Double = p.specs.stoptime
-    override def applyForDouble(p: Point): Double = p.specs.stoptime
   }
 
   val dt = new Dynamics[Double] {
 
     def apply(p: Point): Double = p.specs.dt
-    override def applyForDouble(p: Point): Double = p.specs.dt
   }
 
   /**
@@ -40,7 +36,6 @@ object SystemDynamics {
   def timeIntegration = new Dynamics[Boolean] {
 
     def apply(p: Point): Boolean = (p.phase >= 0)
-    override def applyForBoolean(p: Point): Boolean = (p.phase >= 0)
   }
 
   private def integEuler(y: => Dynamics[Double],
@@ -220,9 +215,7 @@ object SystemDynamics {
 
       val z: Dynamics[Double] = new Dynamics[Double] {
 
-        def apply(p: Point): Double = applyForDouble(p)
-
-        override def applyForDouble(p: Point): Double = p.specs.method match {
+        def apply(p: Point): Double = p.specs.method match {
 
           case Euler => integEuler(y, f, i, p)
           case RungeKutta2 => integRK2(y, f, i, p)

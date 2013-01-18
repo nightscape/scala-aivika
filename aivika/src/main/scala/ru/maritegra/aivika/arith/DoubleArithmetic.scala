@@ -16,8 +16,7 @@ abstract class DoubleArithmetic extends UnaryArithmetic[Double, Double] {
 
   def minus(x: Dynamics[Double]) = new Dynamics[Double] {
 
-    def apply(p: Point): Double = - x.applyForDouble(p)
+    def apply(p: Point): Double = - x.apply(p)
 
-    override def applyForDouble(p: Point): Double = - x.applyForDouble(p)
   }
 }

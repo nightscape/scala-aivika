@@ -41,19 +41,11 @@ object Run {
 
     def apply(p: Point): Int = p.run.index
 
-    override def applyForDouble(p: Point): Double = p.run.index
-    override def applyForFloat(p: Point): Float = p.run.index
-    override def applyForLong(p: Point): Long = p.run.index
-    override def applyForInt(p: Point): Int = p.run.index
   }
 
   val count = new Dynamics[Int] {
 
     def apply(p: Point): Int = p.run.count
 
-    override def applyForDouble(p: Point): Double = p.run.count
-    override def applyForFloat(p: Point): Float = p.run.count
-    override def applyForLong(p: Point): Long = p.run.count
-    override def applyForInt(p: Point): Int = p.run.count
   }
 }

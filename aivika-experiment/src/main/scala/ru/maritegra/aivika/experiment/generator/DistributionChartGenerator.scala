@@ -276,12 +276,12 @@ private class DistributionChartGenerator(parent: ExperimentGenerator, item: Dist
 
     experiment.simulation.afterIntegPointInRun(run.index) subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val vs = run.vars
 
         for (i <- 0 to vs.length - 1) {
-          run.data(i) += vs(i).applyForDouble(p)
+          run.data(i) += vs(i).apply(p)
         }
       }
 

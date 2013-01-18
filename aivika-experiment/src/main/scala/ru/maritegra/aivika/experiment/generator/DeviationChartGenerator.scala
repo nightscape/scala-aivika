@@ -205,12 +205,12 @@ private class DeviationChartGenerator(parent: ExperimentGenerator, item: Deviati
 
     experiment.simulation.afterIntegPoint subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val vs = run.vars
         val ts = run.data
         
-        val xs = vs map (_.applyForDouble(p))
+        val xs = vs map (_.apply(p))
 
         lock.synchronized {
 

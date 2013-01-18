@@ -180,12 +180,12 @@ private class CumulativeStatisticsGenerator(parent: ExperimentGenerator, item: C
 
     experiment.simulation.afterLastPoint subscribe ((p: Point) => {
 
-      if (f.applyForBoolean(p)) {
+      if (f.apply(p)) {
 
         val vs = run.vars
         val ts = run.stats
 
-        val xs = vs map (_.applyForDouble(p))
+        val xs = vs map (_.apply(p))
 
         lock.synchronized {
 

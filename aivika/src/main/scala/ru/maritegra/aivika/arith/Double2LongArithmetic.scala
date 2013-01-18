@@ -16,45 +16,35 @@ abstract class Double2LongArithmetic
   def add(x: Dynamics[Double], y: Dynamics[Long]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForDouble(p) + y.applyForLong(p)
+      x.apply(p) + y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForDouble(p) + y.applyForLong(p)
-  }
+      }
 
   def sub(x: Dynamics[Double], y: Dynamics[Long]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForDouble(p) - y.applyForLong(p)
+      x.apply(p) - y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForDouble(p) - y.applyForLong(p)
-  }
+      }
 
   def mult(x: Dynamics[Double], y: Dynamics[Long]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForDouble(p) * y.applyForLong(p)
+      x.apply(p) * y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForDouble(p) * y.applyForLong(p)
-  }
+      }
 
   def div(x: Dynamics[Double], y: Dynamics[Long]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForDouble(p) / y.applyForLong(p)
+      x.apply(p) / y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForDouble(p) / y.applyForLong(p)
-  }
+      }
 
   def rem(x: Dynamics[Double], y: Dynamics[Long]) = new Dynamics[Double] {
 
     def apply(p: Point): Double = 
-      x.applyForDouble(p) % y.applyForLong(p)
+      x.apply(p) % y.apply(p)
 
-    override def applyForDouble(p: Point): Double = 
-      x.applyForDouble(p) % y.applyForLong(p)
-  }
+      }
 }

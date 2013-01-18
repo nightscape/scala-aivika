@@ -16,60 +16,40 @@ abstract class Float2LongArithmetic
   def add(x: Dynamics[Float], y: Dynamics[Long]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForFloat(p) + y.applyForLong(p)
+      x.apply(p) + y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) + y.applyForLong(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForFloat(p) + y.applyForLong(p)
-  }
+    
+      }
     
   def sub(x: Dynamics[Float], y: Dynamics[Long]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForFloat(p) - y.applyForLong(p)
+      x.apply(p) - y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) - y.applyForLong(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForFloat(p) - y.applyForLong(p)
-  }
+    
+      }
     
   def mult(x: Dynamics[Float], y: Dynamics[Long]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForFloat(p) * y.applyForLong(p)
+      x.apply(p) * y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) * y.applyForLong(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForFloat(p) * y.applyForLong(p)
-  }
+    
+      }
     
   def div(x: Dynamics[Float], y: Dynamics[Long]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForFloat(p) / y.applyForLong(p)
+      x.apply(p) / y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) / y.applyForLong(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForFloat(p) / y.applyForLong(p)
-  }
+    
+      }
     
   def rem(x: Dynamics[Float], y: Dynamics[Long]) = new Dynamics[Float] {
     
     def apply(p: Point): Float = 
-      x.applyForFloat(p) % y.applyForLong(p)
+      x.apply(p) % y.apply(p)
     
-    override def applyForDouble(p: Point): Double = 
-      x.applyForFloat(p) % y.applyForLong(p)
-
-    override def applyForFloat(p: Point): Float = 
-      x.applyForFloat(p) % y.applyForLong(p)
-  }
+    
+      }
 }

@@ -113,12 +113,7 @@ class EventQueue {
 
   val count = new Dynamics[Int] with Stateful {
 
-    def apply(p: Point): Int = applyForInt(p)
-
-    override def applyForDouble(p: Point): Double = applyForInt(p)
-    override def applyForFloat(p: Point): Float = applyForInt(p)
-    override def applyForLong(p: Point): Long = applyForInt(p)
-    override def applyForInt(p: Point): Int = {
+    def apply(p: Point): Int = {
 
       EventQueue.this.run(p)
 

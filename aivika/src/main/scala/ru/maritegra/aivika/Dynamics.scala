@@ -26,46 +26,6 @@ abstract class Dynamics[+A] extends (Point => A) {
   def apply(p: Point): A
 
   /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForDouble(p: Point): Double = apply(p).asInstanceOf[Double]
-
-  /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForFloat(p: Point): Float = apply(p).asInstanceOf[Float]
-
-  /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForLong(p: Point): Long = apply(p).asInstanceOf[Long]
-
-  /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForInt(p: Point): Int = apply(p).asInstanceOf[Int]
-
-  /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForShort(p: Point): Short = apply(p).asInstanceOf[Short]
-
-  /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForByte(p: Point): Byte = apply(p).asInstanceOf[Byte]
-
-  /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForBoolean(p: Point): Boolean = apply(p).asInstanceOf[Boolean]
-
-  /**
-   * Returns a value of the process at the specified time point.
-   */
-  def applyForChar(p: Point): Char = apply(p).asInstanceOf[Char]
-
-  /**
    * The monadic `bind` function.
    */
   def flatMap[B](cont: A => Dynamics[B]): Dynamics[B] = new Dynamics[B] {
@@ -227,7 +187,6 @@ object Dynamics {
 
     def apply(p: Point): Double = a
 
-    override def applyForDouble(p: Point): Double = a
   }
 
   /**
@@ -237,8 +196,6 @@ object Dynamics {
 
     def apply(p: Point): Float = a
 
-    override def applyForDouble(p: Point): Double = a
-    override def applyForFloat(p: Point): Float = a
   }
 
   /**
@@ -248,9 +205,6 @@ object Dynamics {
 
     def apply(p: Point): Long = a
 
-    override def applyForDouble(p: Point): Double = a
-    override def applyForFloat(p: Point): Float = a
-    override def applyForLong(p: Point): Long = a
   }
 
   /**
@@ -260,10 +214,6 @@ object Dynamics {
 
     def apply(p: Point): Int = a
 
-    override def applyForDouble(p: Point): Double = a
-    override def applyForFloat(p: Point): Float = a
-    override def applyForLong(p: Point): Long = a
-    override def applyForInt(p: Point): Int = a
   }
 
   /**
@@ -273,11 +223,6 @@ object Dynamics {
 
     def apply(p: Point): Short = a
 
-    override def applyForDouble(p: Point): Double = a
-    override def applyForFloat(p: Point): Float = a
-    override def applyForLong(p: Point): Long = a
-    override def applyForInt(p: Point): Int = a
-    override def applyForShort(p: Point): Short = a
   }
 
   /**
@@ -287,12 +232,6 @@ object Dynamics {
 
     def apply(p: Point): Byte = a
 
-    override def applyForDouble(p: Point): Double = a
-    override def applyForFloat(p: Point): Float = a
-    override def applyForLong(p: Point): Long = a
-    override def applyForInt(p: Point): Int = a
-    override def applyForShort(p: Point): Short = a
-    override def applyForByte(p: Point): Byte = a
   }
 
   /**
@@ -302,7 +241,6 @@ object Dynamics {
 
     def apply(p: Point): Boolean = a
 
-    override def applyForBoolean(p: Point): Boolean = a
   }
 
   /**
@@ -312,7 +250,6 @@ object Dynamics {
 
     def apply(p: Point): Char = a
 
-    override def applyForChar(p: Point): Char = a
   }
 
   /**
@@ -365,7 +302,7 @@ object Dynamics {
         val t2 = p.specs.time(i, 0)
         val p2 = Point(p.specs, p.run, t2, i, 0)
 
-        ts.add(t2, x.applyForDouble(p2))
+        ts.add(t2, x.apply(p2))
       }
 
       ts

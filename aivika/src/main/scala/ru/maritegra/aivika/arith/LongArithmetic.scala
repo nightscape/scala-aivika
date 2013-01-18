@@ -16,10 +16,6 @@ abstract class LongArithmetic extends UnaryArithmetic[Long, Long] {
 
   def minus(x: Dynamics[Long]) = new Dynamics[Long] {
 
-    def apply(p: Point): Long = - x.applyForLong(p)
-
-    override def applyForDouble(p: Point): Double = - x.applyForLong(p)
-    override def applyForFloat(p: Point): Float = - x.applyForLong(p)
-    override def applyForLong(p: Point): Long = - x.applyForLong(p)
+    def apply(p: Point): Long = - x.apply(p)
   }
 }
